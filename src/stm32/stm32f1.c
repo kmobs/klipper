@@ -66,7 +66,10 @@ clock_setup(void)
             cfgr |= RCC_CFGR_PLLXTPRE_HSE_DIV2;
         else
             div /= 2;
-        cfgr |= (div - 2) << RCC_CFGR_PLLMULL_Pos;
+        cfgr |= ((div - 1) & 0xF) << RCC_CFGR_PLLMULL_Pos;
+        cfgr |= ((div - 1) & 0x30) << (29-4);
+	cfgr |= (3 << 22) | (1 << 27); // usb div 5 ?
+	cfgr |= (1 << 31);
     } else {
         // Configure 72Mhz PLL from internal 8Mhz oscillator (HSI)
         uint32_t div2 = (CONFIG_CLOCK_FREQ / 8000000) * 2;
@@ -78,7 +81,7 @@ clock_setup(void)
     RCC->CR |= RCC_CR_PLLON;
 
     // Set flash latency
-    FLASH->ACR = (2 << FLASH_ACR_LATENCY_Pos) | FLASH_ACR_PRFTBE;
+    //FLASH->ACR = (2 << FLASH_ACR_LATENCY_Pos) | FLASH_ACR_PRFTBE;
 
     // Wait for PLL lock
     while (!(RCC->CR & RCC_CR_PLLRDY))
