@@ -17,14 +17,14 @@ MCU := $(shell echo $(CONFIG_MCU))
 MCU_UPPER := $(shell echo $(CONFIG_MCU) | tr a-z A-Z | tr X x)
 
 CFLAGS-$(CONFIG_MACH_STM32F0) += -mcpu=cortex-m0 -Ilib/stm32f0/include
-CFLAGS-$(CONFIG_MACH_STM32F1) += -mcpu=cortex-m4 -Ilib/stm32f1/include
+CFLAGS-$(CONFIG_MACH_STM32F1) += -mcpu=cortex-m3 -Ilib/stm32f1/include
 CFLAGS-$(CONFIG_MACH_STM32F2) += -mcpu=cortex-m3 -Ilib/stm32f2/include
 CFLAGS-$(CONFIG_MACH_STM32F4) += -mcpu=cortex-m4 -Ilib/stm32f4/include
 CFLAGS-$(CONFIG_MACH_STM32G0) += -mcpu=cortex-m0plus -Ilib/stm32g0/include
 CFLAGS-$(CONFIG_MACH_STM32G4) += -mcpu=cortex-m4 -Ilib/stm32g4/include
 CFLAGS-$(CONFIG_MACH_STM32H7) += -mcpu=cortex-m7 -Ilib/stm32h7/include
 CFLAGS-$(CONFIG_MACH_STM32L4) += -mcpu=cortex-m4 -Ilib/stm32l4/include
-#CFLAGS-$(CONFIG_MACH_AT32F4) = -mcpu=cortex-m4 -Ilib/stm32f1/include
+CFLAGS-$(CONFIG_MACH_AT32F403) = -mcpu=cortex-m4 -Ilib/stm32f1/include
 CFLAGS += $(CFLAGS-y) -D$(MCU_UPPER) -mthumb -Ilib/cmsis-core -Ilib/fast-hash
 
 CFLAGS_klipper.elf += --specs=nano.specs --specs=nosys.specs

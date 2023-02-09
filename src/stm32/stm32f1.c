@@ -66,10 +66,15 @@ clock_setup(void)
             cfgr |= RCC_CFGR_PLLXTPRE_HSE_DIV2;
         else
             div /= 2;
-        cfgr |= ((div - 1) & 0xF) << RCC_CFGR_PLLMULL_Pos;
-        cfgr |= ((div - 1) & 0x30) << (29-4);
-	cfgr |= (3 << 22) | (1 << 27); // usb div 5 ?
-	cfgr |= (1 << 31);
+	if (div <= 16) {
+            cfgr |= (div - 2) << RCC_CFGR_PLLMULL_Pos;
+	} else { // only at32f4 exceeds 16
+            cfgr |= ((div - 1) & 0xF) << RCC_CFGR_PLLMULL_Pos;
+            cfgr |= ((div - 1) & 0x30) << (29-4); // PLLMULT UPPER
+            cfgr |= (2 << 22) | (1 << 27); // usb /4, USBDIV
+            cfgr |= (1 << 31); // PLLRANGE
+            cfgr |= (1 << 28); // ADCDIV UPPER /16 total
+	}
     } else {
         // Configure 72Mhz PLL from internal 8Mhz oscillator (HSI)
         uint32_t div2 = (CONFIG_CLOCK_FREQ / 8000000) * 2;
@@ -81,7 +86,8 @@ clock_setup(void)
     RCC->CR |= RCC_CR_PLLON;
 
     // Set flash latency
-    //FLASH->ACR = (2 << FLASH_ACR_LATENCY_Pos) | FLASH_ACR_PRFTBE;
+    if (!CONFIG_MACH_AT32F403)
+        FLASH->ACR = (2 << FLASH_ACR_LATENCY_Pos) | FLASH_ACR_PRFTBE;
 
     // Wait for PLL lock
     while (!(RCC->CR & RCC_CR_PLLRDY))
@@ -252,6 +258,7 @@ bootloader_request(void)
         usb_hid_bootloader();
     else if (CONFIG_STM32_FLASH_START_2000)
         usb_stm32duino_bootloader();
+    dfu_reboot();
 }
 
 
@@ -263,6 +270,7 @@ bootloader_request(void)
 void
 armcm_main(void)
 {
+    dfu_reboot_check();
     // Run SystemInit() and then restore VTOR
     SystemInit();
     SCB->VTOR = (uint32_t)VectorTable;
