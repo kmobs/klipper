@@ -19,6 +19,21 @@
 
 #define FREQ_PERIPH (CONFIG_CLOCK_FREQ / 2)
 
+#define REG_ACC_BASE          (0x40015800)
+#define REG_ACC_CTRL1_ADDR    (REG_ACC_BASE + 0x0c)
+#define REG_ACC_CTRL1_STEP    (1 << 8)
+#define REG_ACC_CTRL1_ENTRIM  (1 << 1)
+#define REG_ACC_CTRL1_CALON   (1 << 0)
+
+#define REG_CRM_BASE              (0x40021000)
+#define REG_CRM_CTRL_HICKEN       (1 << 0)
+#define REG_CRM_MISC1_ADDR        (REG_CRM_BASE + 0x30)
+#define REG_CRM_MISC1_HICKDIV     (1 << 25)
+#define REG_CRM_MISC3_ADDR        (REG_CRM_BASE + 0x54)
+#define REG_CRM_MISC3_HICK_TO_USB (1 << 8)
+#define REG_CRM_APB2EN_ACCEN      (1 << 22)
+
+
 // Map a peripheral address to its enable bits
 struct cline
 lookup_clock_line(uint32_t periph_base)
@@ -74,6 +89,14 @@ clock_setup(void)
             cfgr |= (2 << 22) | (1 << 27); // usb /4, USBDIV
             cfgr |= (1 << 31); // PLLRANGE
             cfgr |= (1 << 28); // ADCDIV UPPER /16 total
+	}
+
+	if (CONFIG_CLOCK_FREQ > 192000000) { // at32 and needs hick for usb
+            RCC->APB2ENR |= REG_CRM_APB2EN_ACCEN; // enable ACC clock domain
+            RCC->CR |= RCC_CR_HSION; // turn on hick aka HSI for f1
+            *((uint32_t *)REG_ACC_CTRL1_ADDR) |= REG_ACC_CTRL1_ENTRIM | REG_ACC_CTRL1_CALON; // enable clock recovery
+            *((uint32_t *)REG_CRM_MISC1_ADDR) |= REG_CRM_MISC1_HICKDIV; // set to 48mhz output
+            *((uint32_t *)REG_CRM_MISC3_ADDR) |= REG_CRM_MISC3_HICK_TO_USB; // drive hick to usb
 	}
     } else {
         // Configure 72Mhz PLL from internal 8Mhz oscillator (HSI)
