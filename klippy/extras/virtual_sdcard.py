@@ -39,7 +39,7 @@ class VirtualSDGCodeProvider:
                          readpos, repr(data[:readcount]),
                          self.file_position, repr(data[readcount:]))
     def stats(self, eventtime):
-        return "sd_pos=%d" % (self.file_position,)
+        return True, "sd_pos=%d" % (self.file_position,)
     def get_status(self, eventtime):
         return {
             'file_path': self.file_path(),
@@ -226,7 +226,7 @@ class VirtualSD:
     def stats(self, eventtime):
         if self.work_timer is None:
             return False, ""
-        return True, self.gcode_provider.stats(eventtime)
+        return self.gcode_provider.stats(eventtime)
     def get_status(self, eventtime):
         sts = {'is_active': self.is_active()}
         if self.gcode_provider:

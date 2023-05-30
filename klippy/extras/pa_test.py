@@ -87,7 +87,9 @@ class PATest:
         # Nothing to do, no resources to free
         pass
     def stats(self, eventtime):
-        return 'Printing PA tower'
+        if not self.is_active():
+            return False, ''
+        return True, 'Printing PA tower'
     def get_status(self, eventtime):
         return {
             'file_path': self.get_name(),
