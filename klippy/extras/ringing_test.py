@@ -86,9 +86,7 @@ class RingingTest:
         # Nothing to do, no resources to free
         pass
     def stats(self, eventtime):
-        if not self.is_active():
-            return False, ''
-        return True, 'Printing ringing tower'
+        return 'Printing ringing tower'
     def get_status(self, eventtime):
         return {
             'file_path': self.get_name(),
