@@ -86,10 +86,8 @@ class RingingTest:
     def handle_shutdown(self):
         # Nothing to do, no resources to free
         pass
-    def get_stats(self, eventtime):
-        if not self.is_active():
-            return False, ''
-        return True, 'Printing ringing tower'
+    def stats(self, eventtime):
+        return 'Printing ringing tower'
     def get_status(self, eventtime):
         return {
             'file_path': self.get_name(),
