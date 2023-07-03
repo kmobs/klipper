@@ -19,6 +19,9 @@ Might as well use the beacon resolution.
 ### Add drop first probe
 For the people who still use magprobes 
 
+### Add Frequency Tester
+Add the ability for holding a specific frequency to diagnose resonance issues. 
+[Gist](https://gist.github.com/kmobs/f6def5db272ca5c1b81727482f53bed8)
 
 # Standard Readme
 
