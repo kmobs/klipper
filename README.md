@@ -1,3 +1,8 @@
+# Background
+This is my personal branch of klipper that I am using on my machines. It implements features that I find useful
+for my workflow. The code may be janky at times. I'm not a programmer. I just figured this might be useful for 
+some other people.
+
 # Implemented Features
 
 ### Dimitry's Advanced Features
