@@ -926,7 +926,8 @@ see the [probe calibrate guide](Probe_Calibrate.md)).
 #### PROBE
 `PROBE [PROBE_SPEED=<mm/s>] [LIFT_SPEED=<mm/s>] [SAMPLES=<count>]
 [SAMPLE_RETRACT_DIST=<mm>] [SAMPLES_TOLERANCE=<mm>]
-[SAMPLES_TOLERANCE_RETRIES=<count>] [SAMPLES_RESULT=median|average]`:
+[SAMPLES_TOLERANCE_RETRIES=<count>] [SAMPLES_RESULT=median|average]
+[SAMPLES_DISCARD_FIRST=<count>]`:
 Move the nozzle downwards until the probe triggers. If any of the
 optional parameters are provided they override their equivalent
 setting in the [probe config section](Config_Reference.md#probe).
@@ -936,11 +937,11 @@ setting in the [probe config section](Config_Reference.md#probe).
 "open").
 
 #### PROBE_ACCURACY
-`PROBE_ACCURACY [PROBE_SPEED=<mm/s>] [SAMPLES=<count>]
-[SAMPLE_RETRACT_DIST=<mm>]`: Calculate the maximum, minimum, average,
-median, and standard deviation of multiple probe samples. By default,
-10 SAMPLES are taken. Otherwise the optional parameters default to
-their equivalent setting in the probe config section.
+`PROBE_ACCURACY [PROBE_SPEED=<mm/s>] [LIFT_SPEED=<mm/s>] [SAMPLES=<count>]
+[SAMPLE_RETRACT_DIST=<mm>] [SAMPLES_DISCARD_FIRST=<count>]`: Calculate the
+maximum, minimum, average, median, and standard deviation of multiple probe
+samples. By default,10 SAMPLES are taken. Otherwise the optional parameters
+default to their equivalent setting in the probe config section.
 
 #### PROBE_CALIBRATE
 `PROBE_CALIBRATE [SPEED=<speed>] [<probe_parameter>=<value>]`: Run a
