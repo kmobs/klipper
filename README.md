@@ -16,6 +16,10 @@ This has been helpful for me for regulating a chamber heater.
 ### Increase Split Z Resolution
 Might as well use the beacon resolution. 
 
+### Add drop first probe
+For the people who still use magprobes 
+
+
 # Standard Readme
 
 Welcome to the Klipper project!
