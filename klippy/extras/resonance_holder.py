@@ -45,7 +45,9 @@ class ResonanceHolder:
         self.printer = config.get_printer()
         self.gcode = self.printer.lookup_object('gcode')
         self.accel_per_hz = config.getfloat('accel_per_hz', 75., above=0.)
-        self.gcode.register_command("HOLD_RESONANCE", self.cmd_HOLD_RESONANCE, desc=self.cmd_HOLD_RESONANCE_help)
+        self.gcode.register_command(
+            "HOLD_RESONANCE", self.cmd_HOLD_RESONANCE,
+            desc=self.cmd_HOLD_RESONANCE_help)
 
     def hold(self, gcmd, axis, seconds, freq):
         '''holds a resonance for N seconds
