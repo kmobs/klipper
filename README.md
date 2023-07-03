@@ -1,4 +1,4 @@
-#Implemented Features
+# Implemented Features
 
 ### Dimitry's Advanced Features
 Adds the smoothed input shapers, the velocity dependent PA, as well as some of the nonlinear PA additions.
@@ -16,7 +16,7 @@ This has been helpful for me for regulating a chamber heater.
 ### Increase Split Z Resolution
 Might as well use the beacon resolution. 
 
-#Standard Readme
+# Standard Readme
 
 Welcome to the Klipper project!
 
