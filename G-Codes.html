@@ -5146,7 +5146,8 @@ see the <a href="Probe_Calibrate.html">probe calibrate guide</a>).</p>
 <h4 id="probe_1">PROBE<a class="headerlink" href="#probe_1" title="Permanent link">&para;</a></h4>
 <p><code>PROBE [PROBE_SPEED=&lt;mm/s&gt;] [LIFT_SPEED=&lt;mm/s&gt;] [SAMPLES=&lt;count&gt;]
 [SAMPLE_RETRACT_DIST=&lt;mm&gt;] [SAMPLES_TOLERANCE=&lt;mm&gt;]
-[SAMPLES_TOLERANCE_RETRIES=&lt;count&gt;] [SAMPLES_RESULT=median|average]</code>:
+[SAMPLES_TOLERANCE_RETRIES=&lt;count&gt;] [SAMPLES_RESULT=median|average]
+[SAMPLES_DISCARD_FIRST=&lt;count&gt;]</code>:
 Move the nozzle downwards until the probe triggers. If any of the
 optional parameters are provided they override their equivalent
 setting in the <a href="Config_Reference.html#probe">probe config section</a>.</p>
@@ -5154,11 +5155,11 @@ setting in the <a href="Config_Reference.html#probe">probe config section</a>.</
 <p><code>QUERY_PROBE</code>: Report the current status of the probe ("triggered" or
 "open").</p>
 <h4 id="probe_accuracy">PROBE_ACCURACY<a class="headerlink" href="#probe_accuracy" title="Permanent link">&para;</a></h4>
-<p><code>PROBE_ACCURACY [PROBE_SPEED=&lt;mm/s&gt;] [SAMPLES=&lt;count&gt;]
-[SAMPLE_RETRACT_DIST=&lt;mm&gt;]</code>: Calculate the maximum, minimum, average,
-median, and standard deviation of multiple probe samples. By default,
-10 SAMPLES are taken. Otherwise the optional parameters default to
-their equivalent setting in the probe config section.</p>
+<p><code>PROBE_ACCURACY [PROBE_SPEED=&lt;mm/s&gt;] [LIFT_SPEED=&lt;mm/s&gt;] [SAMPLES=&lt;count&gt;]
+[SAMPLE_RETRACT_DIST=&lt;mm&gt;] [SAMPLES_DISCARD_FIRST=&lt;count&gt;]</code>: Calculate the
+maximum, minimum, average, median, and standard deviation of multiple probe
+samples. By default,10 SAMPLES are taken. Otherwise the optional parameters
+default to their equivalent setting in the probe config section.</p>
 <h4 id="probe_calibrate">PROBE_CALIBRATE<a class="headerlink" href="#probe_calibrate" title="Permanent link">&para;</a></h4>
 <p><code>PROBE_CALIBRATE [SPEED=&lt;speed&gt;] [&lt;probe_parameter&gt;=&lt;value&gt;]</code>: Run a
 helper script useful for calibrating the probe's z_offset. See the
