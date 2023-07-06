@@ -36,6 +36,10 @@ Add the ability for holding a specific frequency to diagnose resonance issues.
 
 [Gist](https://gist.github.com/kmobs/f6def5db272ca5c1b81727482f53bed8)
 
+### Add the Dockable Probe Module
+This particular patch has been in limbo for quite a while from Mental. Added the updated version cloakedcode that is a bit simplied and targets fixed x/y and fixed z configurations. 
+
+[Pull Request](https://github.com/Klipper3d/klipper/pull/6247)
 
 # Standard Readme
 
