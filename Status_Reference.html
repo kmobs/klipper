@@ -831,6 +831,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dockable_probe" class="md-nav__link">
+    dockable_probe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#endstop_phase" class="md-nav__link">
     endstop_phase
   </a>
@@ -1620,6 +1627,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dockable_probe" class="md-nav__link">
+    dockable_probe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#endstop_phase" class="md-nav__link">
     endstop_phase
   </a>
@@ -1975,6 +1989,16 @@ the following strings: "adjust", "fine".</li>
 <li><code>progress</code>: The progress value of the last <code>M73</code> G-Code command (or
   <code>virtual_sdcard.progress</code> if no recent <code>M73</code> received).</li>
 <li><code>message</code>: The message contained in the last <code>M117</code> G-Code command.</li>
+</ul>
+<h2 id="dockable_probe">dockable_probe<a class="headerlink" href="#dockable_probe" title="Permanent link">&para;</a></h2>
+<p>The following information is available in the
+<a href="Config_Reference.html#dockable_probe">dockable_probe</a>:</p>
+<ul>
+<li><code>last_status</code>: The UNKNOWN/ATTACHED/DOCKED status of the probbe as
+  reported during the last QUERY_DOCKABLE_PROBE command. Note, if
+  this is used in a macro, due to the order of template expansion,
+  the QUERY_DOCKABLE_PROBE command must be run prior to the macro
+  containing this reference.</li>
 </ul>
 <h2 id="endstop_phase">endstop_phase<a class="headerlink" href="#endstop_phase" title="Permanent link">&para;</a></h2>
 <p>The following information is available in the
